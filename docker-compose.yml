@@ -1,0 +1,17 @@
+version: '2'
+services:
+  wordpress:
+    build:
+      context: .
+      dockerfile: ./wordpress/Dockerfile
+    links:
+      - db:mysql
+    ports:
+      - 8080:80
+      - 80:80
+    env_file: ./data/variables.env
+  db:
+    build:
+      context: .
+      dockerfile: ./mysql/Dockerfile
+    env_file: ./data/variables.env
